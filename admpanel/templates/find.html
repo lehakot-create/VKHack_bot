@@ -1,0 +1,27 @@
+
+{% extends "index.html" %}
+
+{% block body %}
+
+    <form method="GET">
+        {% csrf_token %}
+        {{ filter.form }}
+        <input type="submit" value="Поиск"/>
+    </form>
+
+    {% if filter.qs|length %}
+        {% for el in filter.qs %}
+            {{ el.surname }}
+            {{ el.name }}
+            {{ el.surname2 }}
+            {{ el.birthday }}
+            {{ el.job_title }}
+            {{ el.date_time_contract }}
+            {{ el.department }}
+            {{ el.mentor }}
+        {% endfor %}
+    {% else %}
+        <p>Данные не найдены</p>
+    {% endif %}
+
+{% endblock body %}
