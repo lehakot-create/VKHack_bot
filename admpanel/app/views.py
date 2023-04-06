@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from .models import Employee, JobTitle, Department, Mentor
 from .forms import EmployeeForm, JobTitleForm, DepartmentForm, MentorForm
 from .filters import EmployeeFilter
+from .utils import get_uuid
 
 
 class Index(ListView):
@@ -26,7 +27,6 @@ class FindView(ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = EmployeeFilter(self.request.GET,
                                            queryset=Employee.objects.all())
-        print(context)
         return context
 
 
@@ -40,6 +40,15 @@ class EmployeeCreateView(LoginRequiredMixin,
     template_name = 'create.html'
     form_class = EmployeeForm
     success_url = reverse_lazy('index')
+
+    def post(self, request, *args, **kwargs):
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            employee = form.save()
+            employee.uuid = get_uuid()
+            employee.save()
+            return render(request, 'uuid.html', {'employee': employee})
+        return render(request, 'create.html', {'form': form})
 
 
 class JobTitleCreateView(LoginRequiredMixin,

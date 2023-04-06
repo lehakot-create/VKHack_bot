@@ -20,6 +20,7 @@ class Employee(models.Model):
     mentor = models.ForeignKey('Mentor',
                                on_delete=models.DO_NOTHING,
                                verbose_name='Наставник')
+    uuid = models.CharField(max_length=64, null=True)
 
 
 class JobTitle(models.Model):
