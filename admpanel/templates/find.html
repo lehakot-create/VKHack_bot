@@ -11,15 +11,19 @@
 
     {% if filter.qs|length %}
         {% for el in filter.qs %}
-            {{ el.surname }}
-            {{ el.name }}
-            {{ el.surname2 }}
-            {{ el.birthday }}
-            {{ el.job_title }}
-            {{ el.date_time_contract }}
-            {{ el.department }}
-            {{ el.mentor }}
-            {{ el.get_uuid }}
+        <tr>
+            <td>{{ el.surname }}</td>
+            <td>{{ el.name }}</td>
+            <td>{{ el.surname2 }}</td>
+            <td>{{ el.birthday }}</td>
+            <td>{{ el.job_title }}</td>
+            <td>{{ el.date_time_contract }}</td>
+            <td>{{ el.department }}</td>
+            <td>{{ el.mentor }}</td>
+            <td>{{ el.get_uuid }}</td>
+        </tr>
+        <br>
+            
         {% endfor %}
     {% else %}
         <p>Данные не найдены</p>

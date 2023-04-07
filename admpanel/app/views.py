@@ -8,6 +8,7 @@ from .models import Employee, JobTitle, Department, Mentor
 from .forms import EmployeeForm, JobTitleForm, DepartmentForm, MentorForm
 from .filters import EmployeeFilter
 from .utils import get_uuid
+from admpanel.settings import BOT_PATH
 
 
 class Index(ListView):
@@ -21,12 +22,14 @@ class FindView(ListView):
     template_name = 'find.html'
 
     def get_queryset(self):
-        return self.queryset
+        if self.request.GET.get('surname') is not None:
+            return self.queryset
+        return Employee.objects.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = EmployeeFilter(self.request.GET,
-                                           queryset=Employee.objects.all())
+                                           queryset=self.get_queryset())
         return context
 
 
@@ -47,7 +50,8 @@ class EmployeeCreateView(LoginRequiredMixin,
             employee = form.save()
             employee.uuid = get_uuid()
             employee.save()
-            return render(request, 'uuid.html', {'employee': employee})
+            url_bot = BOT_PATH + '?start=' + employee.uuid
+            return render(request, 'uuid.html', {'url_bot': url_bot})
         return render(request, 'create.html', {'form': form})
 
 
