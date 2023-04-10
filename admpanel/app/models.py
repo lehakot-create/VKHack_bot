@@ -21,6 +21,7 @@ class Employee(models.Model):
                                on_delete=models.DO_NOTHING,
                                verbose_name='Наставник')
     uuid = models.CharField(max_length=64, null=True)
+    telegram_user_id = models.CharField(null=True)
 
 
 class JobTitle(models.Model):
