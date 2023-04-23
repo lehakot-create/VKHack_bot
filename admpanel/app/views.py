@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from allauth.account.views import LoginView, LogoutView
 
 from .models import Employee, JobTitle, Department, Mentor
 from .forms import EmployeeForm, JobTitleForm, DepartmentForm, MentorForm
@@ -11,7 +12,7 @@ from .utils import get_uuid
 from admpanel.settings import BOT_PATH
 
 
-class Index(ListView):
+class Index(LoginRequiredMixin, ListView):
     model = Employee
     template_name = 'index.html'
     context_object_name = 'employee'
@@ -33,8 +34,16 @@ class FindView(ListView):
         return context
 
 
-def login(request):
-    return render(request, 'login.html')
+# def login(request):
+#     return render(request, 'login2.html')
+
+
+class MyLoginView(LoginView):
+    template_name = 'login.html'
+
+
+class MyLogoutView(LogoutView):
+    template_name = 'logout.html'
 
 
 class EmployeeCreateView(LoginRequiredMixin,
