@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
 from allauth.account.views import LoginView, LogoutView
 
 from .models import Employee, JobTitle, Department, Mentor
@@ -32,10 +31,6 @@ class FindView(ListView):
         context['filter'] = EmployeeFilter(self.request.GET,
                                            queryset=self.get_queryset())
         return context
-
-
-# def login(request):
-#     return render(request, 'login2.html')
 
 
 class MyLoginView(LoginView):
