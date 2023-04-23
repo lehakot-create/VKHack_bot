@@ -16,6 +16,14 @@ class Index(LoginRequiredMixin, ListView):
     template_name = 'index.html'
     context_object_name = 'employee'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['count_employee'] = Employee.objects.count()
+        context['count_mentor'] = Mentor.objects.count()
+        context['count_department'] = Department.objects.count()
+        context['count_jobtitle'] = JobTitle.objects.count()
+        return context
+
 
 class FindView(ListView):
     model = Employee
