@@ -31,11 +31,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="\">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Admin Panel</div>
             </a>
 
             <!-- Divider -->
@@ -47,39 +47,43 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li> -->
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li>
+            </li> -->
             {% if user.is_authenticated %}
-                <li class="nav-item active">
+                <!-- <li class="nav-item active">
                     <a class="nav-link" href="{% url 'account_logout' %}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>выход</span></a>
-                </li>
+                </li> -->
                 
-            
-                <a href="{% url 'create_employee' %}">
-                    Создать карточку работника
-                </a>
-                <br>
-                <br>
-                <a href="{% url 'create_jobtitle' %}">
-                    Создать новую должность
-                </a>
-                <br>
-                <a href="{% url 'create_department' %}">
-                    Создать новый отдел
-                </a>
-                <br>
-                <a href="{% url 'create_mentor' %}">
-                    Создать нового ментора
-                </a>
-                <br>
-                <a href="{% url 'find' %}">
-                    Найти сотрудника
-                </a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'create_employee' %}">
+                        Создать карточку работника
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"  href="{% url 'create_jobtitle' %}">
+                        Создать новую должность
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'create_department' %}">
+                        Создать новый отдел
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'create_mentor' %}">
+                        Создать нового ментора
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'find' %}">
+                        Найти сотрудника
+                    </a>
+                </li>
             {% else %}
                 <a href="{% url 'account_login' %}">
                     вход
@@ -191,8 +195,8 @@
         <!-- End of Sidebar -->
 
 
-        {% block login %}
-        {% endblock login %}
+        <!-- {% block login %}
+        {% endblock login %} -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -393,7 +397,7 @@
                                         Activity Log
                                     </a> -->
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{% url 'account_logout' %}" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" href="{% url 'account_logout' %}">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
@@ -413,7 +417,9 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    {% block content %}
 
+                    {% endblock content %}
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -767,24 +773,24 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content"> -->
+                <!-- <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div> -->
+                <!-- <div class="modal-footer"> -->
+                    <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
                     <a class="btn btn-primary" href="{% url 'account_logout' %}">Logout</a>
-                </div>
+                <!-- </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>

@@ -1,32 +1,159 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
 
-{% extends "index.html" %}
+<head>
 
-{% block body %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <form method="GET">
-        {% csrf_token %}
-        {{ filter.form }}
-        <input type="submit" value="Поиск"/>
-    </form>
+    <title>SB Admin 2 - Tables</title>
 
-    {% if filter.qs|length %}
-        {% for el in filter.qs %}
-        <tr>
-            <td>{{ el.surname }}</td>
-            <td>{{ el.name }}</td>
-            <td>{{ el.surname2 }}</td>
-            <td>{{ el.birthday }}</td>
-            <td>{{ el.job_title }}</td>
-            <td>{{ el.date_time_contract }}</td>
-            <td>{{ el.department }}</td>
-            <td>{{ el.mentor }}</td>
-            <td>{{ el.get_uuid }}</td>
-        </tr>
-        <br>
-            
-        {% endfor %}
-    {% else %}
-        <p>Данные не найдены</p>
-    {% endif %}
+    Custom fonts for this template
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet"> -->
 
-{% endblock body %}
+    <!-- Custom styles for this template -->
+    <!-- <link href="css/sb-admin-2.min.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this page -->
+    <!-- <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+<!-- </head> -->
+{% extends 'index.html' %}
+
+{% block content %}
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Найти сотрудника</h1>
+                    
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <form method="GET">
+                                {% csrf_token %}
+                                {{ filter.form }}
+                                <input type="submit" value="Поиск"/>
+                            </form>
+                            <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                {% if filter.qs|length %}
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    
+                                    <thead>
+                                        
+                                            
+                                        
+                                        <tr>
+                                            <th>Фамилия</th>
+                                            <th>Имя</th>
+                                            <th>Отчество</th>
+                                            <th>День рождения</th>
+                                            <th>Должность</th>
+                                            <th>Дата подписания трудового контракта</th>
+                                            <th>Отдел</th>
+                                            <th>наставник</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Фамилия</th>
+                                            <th>Имя</th>
+                                            <th>Отчество</th>
+                                            <th>День рождения</th>
+                                            <th>Должность</th>
+                                            <th>Дата подписания трудового контракта</th>
+                                            <th>Отдел</th>
+                                            <th>наставник</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for el in filter.qs %}
+                                            <tr>
+                                                <td>{{ el.surname }}</td>
+                                                <td>{{ el.name }}</td>
+                                                <td>{{ el.surname2 }}</td>
+                                                <td>{{ el.birthday }}</td>
+                                                <td>{{ el.job_title }}</td>
+                                                <td>{{ el.date_time_contract }}</td>
+                                                <td>{{ el.department }}</td>
+                                                <td>{{ el.mentor }}</td>
+                                                <td>{{ el.get_uuid }}</td>
+                                            </tr>
+                                            <br>
+                                                
+                                            {% endfor %}
+                                        <!-- <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011/07/25</td>
+                                            <td>$170,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009/01/12</td>
+                                            <td>$86,000</td>
+                                        </tr> -->
+                                        
+                                        
+                                        <!-- </tr> -->
+                                    </tbody>
+                                    
+                                </table>
+                                {% else %}
+                                    <p>Данные не найдены</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    
+{% endblock content%}
