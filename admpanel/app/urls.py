@@ -1,12 +1,14 @@
 from django.urls import path
 
-from .views import login, Index, EmployeeCreateView, JobTitleCreateView, \
-     DepartmentCreateView, MentorCreateView, FindView
+from .views import Index, EmployeeCreateView, JobTitleCreateView, \
+     DepartmentCreateView, MentorCreateView, FindView, MyLoginView, \
+     MyLogoutView
 
 
 urlpatterns = [
     path('', Index.as_view(), name='index'),
-    path('login/', login, name='login'),
+#     path('accounts/login/', MyLoginView.as_view(), name='accounts_login'),
+#     path('accounts/logout/', MyLogoutView.as_view(), name='accounts_logout'),
 
     path('emp_create/',
          EmployeeCreateView.as_view(),
