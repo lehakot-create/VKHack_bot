@@ -34,7 +34,7 @@ BOT_PATH = env('BOT_PATH')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.environ.get('HOST')]
 
 
 # Application definition
