@@ -23,7 +23,20 @@
                         <div class="card-body">
                             <form method="POST" class="form-group">
                                 {% csrf_token %}
-                                {{ form.as_p }}
+                                {% for field in form %}
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="{{ field.id_for_label }}">
+                                                <strong>
+                                                    {{ field.label }}
+                                                </strong>
+                                            </label>
+                                        </div>
+                                        <div class="col-6 mb-2" style="max-width: 230px;">
+                                            {{ field }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
                                 <input type="submit" value="Сохранить">
                             </form>
                         </div>

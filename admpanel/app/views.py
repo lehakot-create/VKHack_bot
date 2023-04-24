@@ -70,7 +70,7 @@ class EmployeeCreateView(LoginRequiredMixin,
 class JobTitleCreateView(LoginRequiredMixin,
                          CreateView):
     model = JobTitle
-    template_name = 'update.html'
+    template_name = 'create.html'
     form_class = JobTitleForm
     success_url = reverse_lazy('index')
 
@@ -78,7 +78,7 @@ class JobTitleCreateView(LoginRequiredMixin,
 class DepartmentCreateView(LoginRequiredMixin,
                            CreateView):
     model = Department
-    template_name = 'update.html'
+    template_name = 'create.html'
     form_class = DepartmentForm
     success_url = reverse_lazy('index')
 
@@ -86,6 +86,6 @@ class DepartmentCreateView(LoginRequiredMixin,
 class MentorCreateView(LoginRequiredMixin,
                        CreateView):
     model = Mentor
-    template_name = 'update.html'
+    template_name = 'create.html'
     form_class = MentorForm
     success_url = reverse_lazy('index')

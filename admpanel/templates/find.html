@@ -22,7 +22,20 @@
                         <div class="card-header py-3">
                             <form method="GET">
                                 {% csrf_token %}
-                                {{ filter.form }}
+                                {% for field in filter.form %}
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="{{ field.id_for_label }}">
+                                                <strong>
+                                                    {{ field.label }}
+                                                </strong>
+                                            </label>
+                                        </div>
+                                        <div class="col-6 mb-2" style="max-width: 230px;">
+                                            {{ field }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
                                 <input type="submit" value="Поиск"/>
                             </form>
                             <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
